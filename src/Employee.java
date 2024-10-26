@@ -1,16 +1,20 @@
 public class Employee {
+    //Объявление полей класса
     private final int id;
     private String fullName;
     private int department;
     private int salary;
-    private static int count;
+    private static int count = 0;
 
+    //Конструктор класса
     public Employee(String fullName, int department, int salary) {
-        this.id = count++;
+        this.id = ++count;
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
     }
+
+    //Геттеры и сеттеры
 
     public String getFullName() {
         return fullName;
@@ -40,12 +44,18 @@ public class Employee {
         return id;
     }
 
+    public static int getCount() {
+        return count;
+    }
+
+    //Переопределение метода toString
     @Override
     public String toString() {
         return "Сотрудник № " + id + ", ФИО : " + fullName + ", \tотдел - " +
                 department + ", \tзарплата = " + salary;
     }
 
+    //Переопределение методов equals и hashCode
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -65,6 +75,6 @@ public class Employee {
     public int hashCode() {
         return id;
     }
-    
+
 
 }
