@@ -42,8 +42,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Сотрудник id = " + id + ", fullName = " + fullName + ", department = " +
-                department + ", salary = " + salary;
+        return "Сотрудник № " + id + ", ФИО : " + fullName + ", \tотдел - " +
+                department + ", \tзарплата = " + salary;
     }
 
     @Override
@@ -65,5 +65,6 @@ public class Employee {
     public int hashCode() {
         return id;
     }
+    
 
 }
