@@ -9,7 +9,7 @@ public class Main {
         employees[4] = new Employee("Жук Владимир Владимирович", 5, 500000);
         employees[5] = new Employee("Михайлов Андрей Сергеевич", 4, 600000);
         employees[6] = new Employee("Фёдоров Александр Алексееевич", 1, 70000);
-        employees[7] = new Employee("Макаров Алексей Андреевич", 3, 85001);
+        employees[7] = new Employee("Макаров Алексей Андреевич", 3, 85010);
         employees[8] = new Employee("Свиридов Андрей Андреевич", 2, 90000);
         employees[9] = new Employee("Комарова Ксеня Сергеевна", 5, 110000);
 
@@ -23,6 +23,9 @@ public class Main {
         System.out.println();
         System.out.println("Список ФИО сотрудников:");
         printEmployeesFullName(employees);
+        System.out.println();
+        indexSalary(employees, 10);
+        printEmployees(employees);
     }
 
     public static void printEmployees(Employee[] employees) {
@@ -70,5 +73,11 @@ public class Main {
         }
     }
 
+    public static void indexSalary(Employee[] employees, int addPercentage) {
+        for (int i = 0; i < employees.length; i++) {
+            employees[i].setSalary(employees[i].getSalary() + employees[i].getSalary() * addPercentage / 100);
+        }
+    }
 
 }
+
