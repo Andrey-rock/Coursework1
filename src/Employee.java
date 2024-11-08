@@ -14,7 +14,7 @@ public class Employee {
         if (department <= quantityDepartment) {
             this.department = department;
         } else {
-            System.out.println("Введён неверный номер отдела");
+            throw new IllegalArgumentException("Введён неверный номер отдела");
         }
         this.salary = salary;
     }
