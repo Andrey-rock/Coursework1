@@ -1,193 +1,105 @@
 public class Main {
 
-    //Объявление статического массива - список сотрудников
-    static Employee[] employees = new Employee[10];
-
     public static void main(String[] args) {
 
-        //Заполнение спискасотрудников
-        employees[0] = new Employee("Иванов Иван Иванович", 1, 100_000);
-        employees[1] = new Employee("Сидоров Александр Сергеевич", 2, 200_000);
-        employees[2] = new Employee("Петров Петр Петрович", 3, 300_000);
-        employees[3] = new Employee("Сидорова Мария Ивановна", 2, 400_000);
-        employees[4] = new Employee("Жук Владимир Владимирович", 5, 500_000);
-        employees[5] = new Employee("Михайлов Андрей Сергеевич", 4, 150_000);
-        employees[6] = new Employee("Фёдоров Александр Алексееевич", 1, 70_000);
-        employees[7] = new Employee("Макаров Алексей Андреевич", 3, 85_010);
-        employees[8] = new Employee("Свиридов Андрей Андреевич", 2, 90_000);
-        employees[9] = new Employee("Комарова Ксеня Сергеевна", 5, 110_000);
+        //Инициализация книги сотрудников
+        EmployeeBook book = new EmployeeBook();
 
-        //Проверка работы всех методов
-        System.out.println("Список сотрудников:");
-        printEmployees();
+        //Добавление сотрудников
+        book.addEmployee("Иванов И.И", 1, 100_000);
+        book.addEmployee("Петров П.П", 2, 200_000);
+        book.addEmployee("Сидоров С.А", 3, 210_000);
+        book.addEmployee("Сидорова А.Д", 4, 150_000);
+        book.addEmployee("Романенко К.П", 5, 180_000);
+        book.addEmployee("Соколов А.Д", 4, 220_000);
+        book.addEmployee("Ермоленко А.А", 3, 70_000);
+        book.addEmployee("Белякова А.В", 2, 330_000);
+        book.addEmployee("Свиридов П.В", 1, 81_000);
+        //С проверкой
+        System.out.println(book.addEmployee("Харламова Р.А", 3, 120_000)); //True
+        System.out.println(book.addEmployee("Романенко К.П", 4, 100_000)); //False
+
+        //Вывод списка всех сотрудников
+        book.printEmployees();
         System.out.println();
-        System.out.println("Сумма затрат на ЗП в месяц: " + sumSalary());
-        System.out.println("Сотрудник с максимальной зарплатой: " + maxEmployee());
-        System.out.println("Сотрудник с минимальной зарплатой: " + minEmployee());
-        System.out.println("Среднее значение зарплаты в месяц: " + averageSalary());
+
+        //Вывод суммы зарплаты всех сотрудников за месяц
+        System.out.println("Сумма зарплаты всех сотрудников за месяц: " + book.sumSalary());
         System.out.println();
-        System.out.println("Список ФИО сотрудников:");
-        printEmployeesFullName();
+
+        //Сотрудник с наименьшей зарплатой
+        System.out.println("Сотрудник с наимньшей зарплатой - " + book.minEmployee());
         System.out.println();
-        indexSalary(10);
-        System.out.println("После повышения зарплаты");
-        printEmployees();
+
+        //Сотрудник с наибольшей зарплатой
+        System.out.println("Сотрудник с наибольшей зарплатой - " + book.maxEmployee());
         System.out.println();
-        System.out.println("Сумма затрат на ЗП в месяц в отделе 3: " + sumSalaryDepartment(3));
-        System.out.println("Сотрудник с максимальной зарплатой в отделе 3: " + maxEmployeeDepartment(3));
-        System.out.println("Сотрудник с минимальной зарплатой в отделе 3: " + minEmployeeDepartment(3));
-        System.out.println("Среднее значение зарплаты в месяц в отделе 3: " + averageSalaryDepartment(3));
-        indexSalaryDepartment(3, 10);
-        System.out.println("После повышения зарплаты в отделе 3");
-        printEmployeesDepartment(3);
+
+        //Среднее значение зарплаты
+        System.out.println("Среднее значение зарплаты: " + book.averageSalary());
+        System.out.println();
+
+        //Распечатка ФИО
+        System.out.println("ФИО сотрудников: ");
+        book.printEmployeesFullName();
+        System.out.println();
+
+        //Индексирование зарплаты на 10%
+        System.out.println("Индексирование зарплаты: ");
+        book.indexSalary(10);
+
+        //Вывод списка всех сотрудников
+        book.printEmployees();
+        System.out.println();
+
+        //Проверка метдов для отдела №3
+        System.out.println("В отделе 3:");
+
+        //Сотрудник с наименьшей зарплатой
+        System.out.println("Сотрудник с наимньшей зарплатой - " + book.minEmployeeDepartment(3));
+
+        //Сотрудник с наибольшей зарплатой
+        System.out.println("Сотрудник с наибольшей зарплатой - " + book.maxEmployeeDepartment(3));
+
+        //Среднее значение зарплаты по отделу
+        System.out.println("Среднее значение зарплаты: " + book.averageSalaryDepartment(3));
+        System.out.println();
+
+        //Повышение зарплаты на 10%
+        System.out.println("Повышение зарплаты на 10%: ");
+        book.indexSalaryDepartment(3, 10);
+
+        //Распечатка сотрудников отдела
+        book.printEmployeesDepartment(3);
+        System.out.println();
+
+        //Вывод сотрудников с зп > 200_000
+        System.out.println("Сотрудники с зп > 200_000: ");
+        book.printEmployeesSalaryMore(200_000);
+        System.out.println();
+
+        //Вывод сотрудников с зп < 100_000
+        System.out.println("Сотрудники с зп < 100_000:");
+        book.printEmployeesSalaryLess(100_000);
+        System.out.println();
+
+        //Удаление сотрудника
+        book.deleteEmployee(3);
+        book.deleteEmployee(6);
+        book.deleteEmployee(8);
+        book.deleteEmployee(9);
+        book.deleteEmployee(8); //Не будет найден
+        System.out.println();
+
+        //Вывод списка всех сотрудников
+        book.printEmployees();
+        System.out.println();
+
+        //Получение сотрудника по id
+        System.out.println(book.getEmployee(5));
+        System.out.println();
+        System.out.println(book.getEmployee(10));
+        System.out.println();
     }
-
-    //Базовый уровень сложности
-
-    //Метод вывода списка сотрудников
-    public static void printEmployees() {
-        for (Employee employee : employees) {
-            if (employee != null) {
-                System.out.println(employee);
-            }
-        }
-    }
-
-    //Метод получения суммы затрат на ЗП
-    public static int sumSalary() {
-        int sum = 0;
-        for (Employee employee : employees) {
-            if (employee != null) {
-                sum += employee.getSalary();
-            }
-        }
-        return sum;
-    }
-
-    //Метод получения сотрудника с максимальной зарплатой
-    public static Employee maxEmployee() {
-        Employee max = employees[0];
-        for (Employee employee : employees) {
-            if ((employee != null) && (employee.getSalary() > max.getSalary())) {
-                max = employee;
-            }
-        }
-        return max;
-    }
-
-    //Метод получения сотрудника с минимальной зарплатой
-    public static Employee minEmployee() {
-        Employee min = employees[0];
-        for (Employee employee : employees) {
-            if ((employee != null) && (employee.getSalary() < min.getSalary())) {
-                min = employee;
-            }
-        }
-        return min;
-    }
-
-    //Метод получения среднего значения зарплаты
-    public static float averageSalary() {
-
-        return (float) sumSalary() / Employee.getCount();
-    }
-
-    //Метод вывода списка ФИО сотрудников
-    public static void printEmployeesFullName() {
-        for (Employee employee : employees) {
-            if (employee != null) {
-                System.out.println(employee.getFullName());
-            }
-        }
-    }
-
-    //Средний уровень сложности
-
-    //Метод индексации зарплаты
-    public static void indexSalary(int addPercentage) {
-        for (Employee employee : employees) {
-            if (employee != null) {
-                employee.setSalary(employee.getSalary() + employee.getSalary() * addPercentage / 100);
-            }
-        }
-    }
-
-    //Метод получения сотрудника с максимальной зарплатой в отделе
-    public static Employee maxEmployeeDepartment(int department) {
-        Employee max = employees[0];
-        for (Employee employee : employees) {
-            if ((employee != null) && (department == employee.getDepartment())) {
-                max = employee;
-                break;
-            }
-        }
-        for (Employee employee : employees) {
-            if ((employee != null) && (employee.getSalary() > max.getSalary()) &&
-                    (employee.getDepartment() == department)) {
-                max = employee;
-            }
-        }
-        return max;
-    }
-
-    //Метод получения сотрудника с минимальной зарплатой в отделе
-    public static Employee minEmployeeDepartment(int department) {
-        Employee min = employees[0];
-        for (Employee employee : employees) {
-            if ((employee != null) && (department == employee.getDepartment())) {
-                min = employee;
-                break;
-            }
-        }
-        for (Employee employee : employees) {
-            if ((employee != null) && (employee.getSalary() < min.getSalary()) &&
-                    (employee.getDepartment() == department)) {
-                min = employee;
-            }
-        }
-        return min;
-    }
-
-    //Метод получения суммы затрат на ЗП в отделе
-    public static int sumSalaryDepartment(int department) {
-        int sum = 0;
-        for (Employee employee : employees) {
-            if ((employee != null) && (department == employee.getDepartment())) {
-                sum += employee.getSalary();
-            }
-        }
-        return sum;
-    }
-
-    //Метод получения среднего значения зарплаты в отделе
-    public static float averageSalaryDepartment(int department) {
-        int count = 0;
-        for (Employee employee : employees) {
-            if ((employee != null) && (department == employee.getDepartment())) {
-                count++;
-            }
-        }
-        return (float) sumSalaryDepartment(department) / count;
-    }
-
-    //Метод индексации зарплаты в отделе
-    public static void indexSalaryDepartment(int department, int addPercentage) {
-        for (Employee employee : employees) {
-            if ((employee != null) && (department == employee.getDepartment())) {
-                employee.setSalary(employee.getSalary() + employee.getSalary() * addPercentage / 100);
-            }
-        }
-    }
-
-    //Метод вывода списка сотрудников в отделе
-    public static void printEmployeesDepartment(int department) {
-        for (Employee employee : employees) {
-            if ((employee != null) && (department == employee.getDepartment())) {
-                System.out.println("Сотрудник № " + employee.getId() + ", ФИО : " + employee.getFullName()
-                        + ", \tзарплата = " + employee.getSalary());
-            }
-        }
-    }
-
 }
 

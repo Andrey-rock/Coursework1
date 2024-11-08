@@ -10,7 +10,12 @@ public class Employee {
     public Employee(String fullName, int department, int salary) {
         this.id = ++count;
         this.fullName = fullName;
-        this.department = department;
+        int quantityDepartment = 5;
+        if (department <= quantityDepartment) {
+            this.department = department;
+        } else {
+            System.out.println("Введён неверный номер отдела");
+        }
         this.salary = salary;
     }
 
@@ -51,7 +56,7 @@ public class Employee {
     //Переопределение метода toString
     @Override
     public String toString() {
-        return "Сотрудник № " + id + ", ФИО : " + fullName + ", \tотдел - " +
+        return "Сотрудник № " + id + ": ФИО - " + fullName + ", \tотдел - " +
                 department + ", \tзарплата = " + salary;
     }
 
@@ -75,6 +80,4 @@ public class Employee {
     public int hashCode() {
         return id;
     }
-
-
 }
