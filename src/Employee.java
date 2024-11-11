@@ -5,12 +5,13 @@ public class Employee {
     private int department;
     private int salary;
     private static int count = 0;
+    private static final int quantityDepartment = 5;
 
     //Конструктор класса
     public Employee(String fullName, int department, int salary) {
         this.id = ++count;
         this.fullName = fullName;
-        int quantityDepartment = 5;
+
         if (department <= quantityDepartment) {
             this.department = department;
         } else {
@@ -51,6 +52,10 @@ public class Employee {
 
     public static int getCount() {
         return count;
+    }
+
+    public static int getQuantityDepartment() {
+        return quantityDepartment;
     }
 
     //Переопределение метода toString
