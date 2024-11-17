@@ -5,12 +5,18 @@ public class Employee {
     private int department;
     private int salary;
     private static int count = 0;
+    private static final int quantityDepartment = 5;
 
     //Конструктор класса
     public Employee(String fullName, int department, int salary) {
         this.id = ++count;
         this.fullName = fullName;
-        this.department = department;
+
+        if (department <= quantityDepartment) {
+            this.department = department;
+        } else {
+            throw new IllegalArgumentException("Введён неверный номер отдела");
+        }
         this.salary = salary;
     }
 
@@ -48,10 +54,14 @@ public class Employee {
         return count;
     }
 
+    public static int getQuantityDepartment() {
+        return quantityDepartment;
+    }
+
     //Переопределение метода toString
     @Override
     public String toString() {
-        return "Сотрудник № " + id + ", ФИО : " + fullName + ", \tотдел - " +
+        return "Сотрудник № " + id + ": ФИО - " + fullName + ", \tотдел - " +
                 department + ", \tзарплата = " + salary;
     }
 
@@ -75,6 +85,4 @@ public class Employee {
     public int hashCode() {
         return id;
     }
-
-
 }
