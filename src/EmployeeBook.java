@@ -38,14 +38,15 @@ public class EmployeeBook {
 
     //Метод вывода списка сотрудников
     public void printEmployees() {
-        if (Employee.getCount() == 0) {
-            System.out.println("Список сотрудников пуст");
-            return;
-        }
+        boolean flag = false;
         for (Employee employee : employees) {
             if (employee != null) {
                 System.out.println(employee);
+                flag = true;
             }
+        }
+        if (!flag) {
+            System.out.println("Список сотрудников пуст");
         }
     }
 
@@ -84,8 +85,14 @@ public class EmployeeBook {
 
     //Метод получения среднего значения зарплаты
     public float averageSalary() {
-        if (Employee.getCount() > 0) {
-            return (float) sumSalary() / Employee.getCount();
+        int countEmployee = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                countEmployee++;
+            }
+        }
+        if (countEmployee > 0) {
+            return (float) sumSalary() / countEmployee;
         } else {
             return 0;
         }
@@ -151,6 +158,7 @@ public class EmployeeBook {
         }
         Employee min = firstEmployeeDepartmentInSearch(department);
         if (min == null) {
+            System.out.println("В отделе нет сотрудников");
             return null;
         }
         for (Employee employee : employees) {
